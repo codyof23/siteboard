@@ -43,6 +43,16 @@ function setup() {
     //console.log(typeof(mic));
 }
 
+document.ontouchmove = function(e){ e.preventDefault(); }
+
+function noscroll() {
+  window.scrollTo( 0, 0 );
+}
+
+// add listener to disable scroll
+window.addEventListener('scroll', noscroll);
+
+
 function gotFile(file){
 
     //drawImage(bground, 50, 50)
