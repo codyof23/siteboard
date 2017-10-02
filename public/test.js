@@ -14,7 +14,8 @@ var drawfunctions= {
     stroker: true,
     liner: false,
     circle: false,
-    imager: false
+    imager: false,
+    eraser: false
 };
 
 
@@ -94,6 +95,10 @@ function newStroke(data) {
     if (data.func == "circle") {
         hist.push(new Circle(position));
     }
+
+    if (data.func == "eraser") {
+        hist.push(new Eraser(position));
+    }
 }
 
 function stroking(data) {
@@ -160,6 +165,16 @@ function mousePressed() {
             y: mouseY
         };
     }
+    else if (drawfunctions.eraser) {
+        hist.push(new Eraser(position));
+        console.log("new erase!");
+        var data = {
+            func: "eraser",
+            x: mouseX,
+            y: mouseY
+        };
+    }
+
     else {
         console.log("no draw function selected");
     }
@@ -236,6 +251,23 @@ function Stroke(vector) {
     }   
 }
 
+function Eraser(vector) {
+    this.hist = [vector, vector];
+    //this.hist.push(vector);
+    
+    this.display = function() {
+        
+        beginShape();
+        for (var i = 0; i < this.hist.length; i++) {
+            var pos = this.hist[i];
+            fill('#013220');
+            noStroke();
+            ellipse(pos.x, pos.y, 30);
+        }
+        endShape();
+    }   
+}
+
 function Imager(img, x, y) {
     this.x = x;
     this.y = y;
@@ -245,22 +277,32 @@ function Imager(img, x, y) {
     }   
 }
 
+function eraser_selector() {
+        drawfunctions.stroker = false;
+        drawfunctions.liner = false;
+        drawfunctions.circle = false;
+        drawfunctions.eraser = true;
+}
+
 function stroke_selector() {
         drawfunctions.stroker = true;
         drawfunctions.liner = false;
         drawfunctions.circle = false;
+        drawfunctions.eraser = false;
 }
     
  function line_selector() {
         drawfunctions.stroker = false;
         drawfunctions.liner = true;
         drawfunctions.circle = false;
+        drawfunctions.eraser = false;
 }
 
  function circle_selector() {
         drawfunctions.stroker = false;
         drawfunctions.liner = false;
         drawfunctions.circle = true;
+        drawfunctions.eraser = false;
 }
 
 function undoSend(){

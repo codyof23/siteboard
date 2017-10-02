@@ -37,6 +37,7 @@ function newConnection(socket){
     socket.on('undo', undoMsg);
     socket.on('redo', redoMsg);
     socket.on('clear', clearMsg);
+    socket.on('eraser', eraserMsg)
 
     function clearMsg() {
         socket.broadcast.emit('clear');
@@ -54,6 +55,10 @@ function newConnection(socket){
         socket.broadcast.emit('sound', data);
     }
     
+    function eraserMsg() {
+        socket.broadcast.emit('eraser');
+    }
+
     function startMsg(data) {
         
         //sends stroke start data to other clients
