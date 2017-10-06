@@ -210,6 +210,7 @@ function Circle(vector) {
     this.display = function() {
         rad = sqrt(sq((this.hist[0].x - this.hist[(this.hist.length - 1)].x)) + sq((this.hist[0].y - this.hist[(this.hist.length - 1)].y)));
          noFill();
+         stroke('#f5f5f5');
          beginShape();
          ellipse(this.hist[0].x, this.hist[0].y, rad * 2);
          endShape();
@@ -226,6 +227,7 @@ function Line(vector) {
     //this.history[1] = postion;
     this.display = function() {
         beginShape();
+        stroke('#f5f5f5');
         vertex(this.hist[0].x, this.hist[0].y);
         vertex(this.hist[(this.hist.length - 1)].x, this.hist[(this.hist.length - 1)].y);
         endShape();
@@ -242,6 +244,7 @@ function Stroke(vector) {
     this.display = function() {
         noFill();
         smooth();
+        stroke('#f5f5f5');
         beginShape();
         for (var i = 0; i < this.hist.length; i++) {
             var pos = this.hist[i];
