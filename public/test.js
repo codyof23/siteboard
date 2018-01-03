@@ -6,6 +6,8 @@ var canv;
 var hist = [];
 var redo = [];
 
+var current_draw;
+
 var mic;
 
 var bground;
@@ -106,7 +108,7 @@ function stroking(data) {
     // the same time. Might fix it by being more explicit
     // about strokes index
     var position = createVector(data.x, data.y);
-    hist[(hist.length - 1)].hist.push(position);    
+    hist[data.i].hist.push(position);    
 }
 
 function draw() {
@@ -179,22 +181,24 @@ function mousePressed() {
         console.log("no draw function selected");
     }
 }
- 
+    current_draw = (hist.length - 1);
     socket.emit('start', data);
 }
 
 function mouseDragged() {
     var position = createVector(mouseX, mouseY);
     if(position.y >50) {
-    hist[(hist.length - 1)].hist.push(position);
+    hist[current_draw].hist.push(position);
     //console.log(hist[0].hist[0]);
     var data = {
+        i: current_draw,
         x: mouseX,
         y: mouseY
     };
         
     socket.emit('mouse', data);
 }
+
 }
 
 function Grid(vector) {
