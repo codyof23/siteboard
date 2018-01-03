@@ -15,7 +15,9 @@
   "author": "Cody O'Ferrall",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.15.3",
+    "hbs": "^4.0.1",
     "socket.io": "^2.0.3"
   }
 }
