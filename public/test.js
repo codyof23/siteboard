@@ -28,7 +28,7 @@ function setup() {
 
     bground = '#013220';
 
-    socket = io.connect('199.233.246.208:3000');
+    socket = io.connect('69.30.210.118:3000');
     socket.on('start', newStroke);
     socket.on('mouse', stroking);
     //socket.on('sound', newSound);
