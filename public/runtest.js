@@ -12,7 +12,7 @@ var current_draw;
 
 
 function connect(){
-    socket = io.connect('localhost:3000');
+    socket = io.connect('69.30.210.118:3000');
 //need to get connection info and assess p2p capabilities w/this function
 //should add a wait time to make sure that connection goes through because
 // next in setup is to establish room connection	    
